@@ -1,64 +1,158 @@
-:root {
-  --shadow: rgba(0, 0, 0, 0.8)
+.book {
+  transition: opacity 0.4s 0.2s;
+}
+*{
+  margin-top: 2vw;
+  text-align:justify;
+  font-size: 2vwh;
+  color: #000000;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.slider-container {
+.page {
+  margin-top: 5vw;
+  width: 80vw;
   height: 100vh;
-  display: inline-flex;
+  float: left;
+  margin-bottom: 0.5em;
+  background: top no-repeat;
+  background-size: cover;
   overflow: hidden;
-  scrollbar-width: none;
-  transform: translateX(0);
-  will-change: transform;
-  transition: transform 0.3s ease-out;
-  cursor: grab;
 }
-
-.slide{
-  max-height: 100vh;
-  width: 100vw;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+.page img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
-
-@media(min-width: 1200px){
-  .slide {
-    padding: 3rem;
-  }
+.page .para{
+  margin: 1em 1em 1em 1em;
 }
-
-.slide img{
-  max-width: 100%;
-  max-height: 100%;
-  transition: transform 0.3s ease-in-out;
-  box-shadow: 5px 5px 50px -1px var(--shadow);
+.page:nth-child(even) {
+  clear: both;
+}
+.book {
+  perspective: 250vw;
+  overflow: hidden;
+}
+.book .pages {
+  width: 80vw;
+  height: 100vh;
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
   border-radius: 4px;
+}
+.book .pages .page {
+  float: none;
+  clear: none;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 80vw;
+  height: 100vh;
+  transform-origin: 0 0;
+  transition: transform 1.4s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  cursor: pointer;
   user-select: none;
+  background-color: #f0f0f0;
 }
 
-.grabbing {
-  cursor: grabbing;
+.book .menu {
+  float: none;
+  clear: none;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 80vw;
+  height: 100vh;
+  transform-origin: 0 0;
+  user-select: none;
+  cursor: pointer;
+  transform-style: flat;
+  background-color: #423838;
+  opacity: 0;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: 0.3s;
+  will-change: opacity, visibility;
+  z-index: 2;
 }
 
-.grabbing .slide img{
-  transform: scale(0.9);
-  box-shadow: 5px 5px 40px -1px var(--shadow);
+.book .menu.fade-in-section {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  z-index: 2;
+  transition: 0.3s;
+  
 }
 
+.book .page:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: background 0.7s;
+  z-index: 2;
+}
+.book .pages .page {
+  pointer-events: all;
+  transition: transform 1.4s;
+  transform: rotateY(0deg);
+  right: 0;
+  border-radius: 0 4px 4px 0;
+}
+.book .page:hover {
+  transform: rotateY(-15deg);
+}
+.book .page:hover:before {
+  background: rgba(0, 0, 0, 0.03);
+}
+.book .page:before {
+  background: rgba(0, 0, 0, 0);
+}
+.book .page .grabbing {
+  transition: none;
+}
 
+.book .pages .page {
+  pointer-events: all;
+  transition: transform 1.4s;
+  transform: rotateY(0deg);
+}
 
+.book .pages .page.flipped {
+  transition: transform 1.4s;
+  pointer-events: all;
+  transform: rotateY(-180deg);
+  animation: 5s ease-in 3s infinite reverse both running slidein;
+}
 
-
+*,
+* :before,
+*:after {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: 'Lovers Quarrel', cursive;
+  background: #333;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+  line-height: 1.5em;
+}
+.page:nth-child(odd){
+  background-position: right top;
+}

@@ -1,12 +1,23 @@
-var CACHE_NAME = 'gym-cache-v1';
+var CACHE_NAME = 'fitness_main';
 var urlsToCache = [
   'index.html',
   'style.css',
   'service-workers.js',
-  'jquery.min.js',
-  'main.js',
-  'app.js',
-  'icon-512x512.png'
+  'scripts/idb.js',
+  'scripts/jquery.min.js',
+  'scripts/main.js',
+  'scripts/app.js',
+  'images/favico.ico',
+  'images/favicon.ico',
+  'images/favicon.png',
+  'images/favicon1.png',
+  'images/icon-128x128.png',
+  'images/icon-144x144.png',
+  'images/icon-152x152.png',
+  'images/icon-192x192.png',
+  'images/icon-256x256.png',
+  'images/icon-512x512.png',
+  'images-lession/'
 ];
 
 self.addEventListener('install', function(event) {
@@ -21,7 +32,7 @@ self.addEventListener('install', function(event) {
 });
 self.addEventListener('activate', function(event) {
 
-  var cacheAllowlist = ['gym-cache-v1'];
+  var cacheAllowlist = ['fitness_main', 'blog-posts-cache-v1'];
 
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
