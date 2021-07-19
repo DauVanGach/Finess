@@ -10,7 +10,7 @@
 
 .page {
   margin-top: 5vw;
-  width: 100vw;
+  width: 80vw;
   height: 100vh;
   float: left;
   margin-bottom: 0.5em;
@@ -34,7 +34,7 @@
   overflow: hidden;
 }
 .book .pages {
-  width: 100vw;
+  width: 80vw;
   height: 100vh;
   position: relative;
   transform-style: preserve-3d;
@@ -47,7 +47,7 @@
   margin: 0;
   position: absolute;
   top: 0;
-  width: 100vw;
+  width: 80vw;
   height: 100vh;
   transform-origin: 0 0;
   transition: transform 1.4s;
@@ -64,7 +64,7 @@
   margin: 0;
   position: absolute;
   top: 0;
-  width: 100vw;
+  width: 80vw;
   height: 100vh;
   transform-origin: 0 0;
   user-select: none;
@@ -144,9 +144,11 @@ body {
 }
 html {
   height: 100%;
+  height: -webkit-fill-available;
 }
 body {
   min-height: 100%;
+  min-height: -webkit-fill-available;
   display: flex;
   justify-content: center;
   align-items: center;
